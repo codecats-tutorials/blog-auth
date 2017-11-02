@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load render_bundle from webpack_loader %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>hello-vue</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div id="app">
+<!-- {% templatetag openvariable %} token {% templatetag closevariable %} -->
+	<login v-if=" ! token"></login>
+	<div v-if="token">
+		<div class="tabs is-fullwidth">
+	  		<ul>
+				<router-link tag="li" to="/" exact><a>Home</a></router-link>
+				<router-link tag="li" to="/about"><a>About</a></router-link>
+				<logout>Logout</logout>
+			</ul>
+		</div>
+
+		<router-view></router-view>
+
+		<hr>
+		<app :load-data=true></app>
+
+	</div>
+</div>
+
+{% render_bundle 'vendor' %}
+{% render_bundle 'main' %}
+</body>
+</html>
